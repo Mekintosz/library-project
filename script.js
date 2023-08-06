@@ -6,7 +6,44 @@ function Book(title, author, pages) {
   this.pages = pages;
 }
 
-function addBookToLibrary() {
-    myLibrary.push()
-  const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64)
+function addBookToLibrary(book) {
+    myLibrary.push(book)
+
+  }
+
+const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64)
+const book2 = new Book("Alexander Lowen", "Radość", 327)
+const book3 = new Book("Iron John", "Robert Bly", 264)
+
+addBookToLibrary(book1);
+addBookToLibrary(book2);
+addBookToLibrary(book3);
+
+function createLibraryCards() {
+
+  const card = document.createElement("div");
+  for (let book of myLibrary) {
+    const card = document.createElement("div");
+    card.setAttribute("class", "card")
+
+    const title = document.createElement("p");
+    const titleText = document.createTextNode(`Title: ${book.title}`);
+    card.appendChild(title);
+    title.appendChild(titleText);
+
+    const author = document.createElement("p");
+    const authorText = document.createTextNode(`Author ${book.author}`);
+    card.appendChild(author);
+    author.appendChild(authorText);
+
+    const pages = document.createElement("p");
+    const pagesText = document.createTextNode(`Pages ${book.pages}`);
+    card.appendChild(pages);
+    pages.appendChild(pagesText);
+    
+    document.getElementById("library").appendChild(card);
+    
+  }
 }
+
+createLibraryCards();

@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#library {
+    padding: 30px;
+    background-color: antiquewhite;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 60vw;
+    gap: 30px;
+} 
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border: 1px solid black;
+    background-color: azure;
+    padding: 30px;
+}
