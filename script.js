@@ -47,3 +47,20 @@ function createLibraryCards() {
 }
 
 createLibraryCards();
+
+// ------Modal------ 
+const openModal = document.getElementById("addBookBtn")
+const modal = document.getElementById("BookModal")
+const overlay = document.getElementById("overlay")
+
+openModal.addEventListener("click", () => addBookModal())
+overlay.addEventListener("click", () => {modal.classList.remove("active")
+                                        overlay.classList.remove("active")
+                                        })
+
+function addBookModal() {
+  addBookForm.reset()
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
