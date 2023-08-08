@@ -8,7 +8,6 @@ function Book(title, author, pages) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book)
-
   }
 
 const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64)
@@ -64,3 +63,13 @@ function addBookModal() {
   overlay.classList.add('active')
 }
 
+// const status = document.getElementsByName("status")
+const title = document.getElementById("title")
+
+function radioStatus() {
+  let status = document.getElementsByName("status");
+  let checkedRadio = Array.from(status).find(
+    (radio) => radio.checked
+  );
+  alert("You have selected : " + checkedRadio.value);
+};
