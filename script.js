@@ -82,6 +82,10 @@ function createLibraryCards() {
     radioReading.name = "status";
     radioContainerRead.appendChild(radioReading);
 
+    const editButton = document.createElement("button")
+    editButton.innerText = "Edit book"
+    card.appendChild(editButton);
+
     document.getElementById("library").appendChild(card);
   }
 }

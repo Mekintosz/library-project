@@ -10,7 +10,11 @@
 <body>
     <header class="header">
         <img src="./books.png">
-        <h1>The bookshelf</h1>
+        <div class="title">
+            <h1>bookshelf...</h1>
+            <p>The place to store all your books.</p>
+        </div>
+        
         <button class="button" id="addBookBtn">+ add book<img src="./book.png"></button>
     </header>
     <div id = "library"></div>
@@ -18,21 +22,27 @@
         <p>Mekintosz 2023</p>
     </footer>
     <div class="modal" id="BookModal">
+        <img src="./book2.png" alt="book">
         <form class="add-book-form" id="addBookForm">
-            <img src="./book2.png" alt="book">
-            <!-- <label for="title">Book title</label> -->
-            <input type="text" id="title" placeholder="Title...">
-            <!-- <label for="author">Book author</label> -->
-            <input type="text" id="author" placeholder="Author...">
-            <!-- <label for="pages">Number of pages</label> -->
-            <input type="text" id="pages" placeholder="Pages...">
+            <div class = "book-form-unit">
+                <label for="title">Book title</label>
+                <input type="text" id="title" placeholder="Type books title...">
+            </div>
+            <div class = "book-form-unit">
+                <label for="author">Book author</label>
+                <input type="text" id="author" placeholder="The authors details...">
+            </div>
+            <div class = "book-form-unit">
+                <label for="pages">Number of pages</label>
+                <input type="text" id="pages" placeholder="How many pages in the book...">
+            </div>
             <div class="radio-container">
                 <div class="radio-div">
                     <label for="read">Read</label>
                     <input type="radio" id="read" name="status" value="read">
                 </div>
                 <div class="radio-div">
-                    <label for="unread">Unread</label>
+                    <label for="unread">Not jet</label>
                     <input type="radio" id="unread" name="status" value="unread">
                 </div>
                 <div class="radio-div">
@@ -40,7 +50,7 @@
                     <input type="radio" id="reading" name="status" value="reading" checked>
                 </div>
             </div>
-            <button type="submit" id="submit" class="button">Add</button>
+            <button type="submit" id="submit" class="button">Add on the shelf</button>
         </form>
     </div>
     <div class="overlay" id="overlay"></div>
