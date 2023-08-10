@@ -39,6 +39,7 @@ body {
     border-left: 10px solid #59A1A5;
     border-top: 2px solid #59A1A5;
     border-bottom: 2px solid #59A1A5;
+    gap: 8px;
 }
 
 /* ---------------------header---------------- */
