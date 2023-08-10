@@ -1,19 +1,28 @@
 let myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.status = () => radioStatus();
+  this.status = status;
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book)
-  }
+}
 
-const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64)
-const book2 = new Book("Alexander Lowen", "Radość", 327)
-const book3 = new Book("Iron John", "Robert Bly", 264)
+function createBook() {
+  const title = document.getElementById("title");
+  const author = document.getElementById("author");
+  const pages = document.getElementById("pages");
+  const status = radioStatus();
+  let newBook = new Book (title, author, pages, status);
+  myLibrary.push(newBook);
+}
+
+const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "read")
+const book2 = new Book("Alexander Lowen", "Radość", 327, "reading")
+const book3 = new Book("Iron John", "Robert Bly", 264, "unread")
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);
@@ -59,6 +68,7 @@ function createLibraryCards() {
     radioRead.type = 'radio';
     radioRead.id = 'read';
     radioRead.value = 'read';
+    radioRead.checked = true;
     radioRead.name = `${book.title}`;
     radioContainerRead.appendChild(radioRead);
 
@@ -125,10 +135,16 @@ function addBookModal() {
 // const status = document.getElementsByName("status")
 // const title = document.getElementById("title")
 
-function radioStatus() {
-  let status = document.getElementsByName("status");
+function radioStatus(t) {
+  let status = document.getElementsByName(`${t}`);
   let checkedRadio = Array.from(status).find(
     (radio) => radio.checked
   );
   return checkedRadio.value
 };
+
+// -------------Create book--------------
+createButton = document.getElementById("createBook");
+createButton.addEventListener("click", function(event){
+  event.preventDefault()})
+createButton.addEventListener("click", () => createBook())
