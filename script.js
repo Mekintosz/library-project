@@ -7,18 +7,47 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
+function createBook() {
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const status = radioStatus(title);
+  let newBook = new Book (title, author, pages, status);
+  myLibrary.push(newBook);
+  removeLibraryCards();
+  createLibraryCards();
+}
+
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
 
-function createBook() {
-  const title = document.getElementById("title");
-  const author = document.getElementById("author");
-  const pages = document.getElementById("pages");
-  const status = radioStatus();
-  let newBook = new Book (title, author, pages, status);
-  myLibrary.push(newBook);
+function radioStatus() {
+  let status = document.getElementsByName("status");
+  let checkedRadio = Array.from(status).find(
+    (radio) => radio.checked
+  );
+  return checkedRadio.value
+};
+
+function addBookModal() {
+  addBookForm.reset()
+  modal.classList.add('active')
+  overlay.classList.add('active')
 }
+
+// ------Modal------ 
+const openModal = document.getElementById("addBookBtn")
+const modal = document.getElementById("BookModal")
+const overlay = document.getElementById("overlay")
+
+openModal.addEventListener("click", () => addBookModal())
+overlay.addEventListener("click", () => {modal.classList.remove("active")
+                                        overlay.classList.remove("active")
+                                        })
+
+// const status = document.getElementsByName("status")
+// const title = document.getElementById("title")
 
 const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "read")
 const book2 = new Book("Alexander Lowen", "Radość", 327, "reading")
@@ -28,8 +57,17 @@ addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
 
-function createLibraryCards() {
+function removeLibraryCards() {
+  const library = document.getElementById("library");
+  const cards = document.getElementsByClassName("card")
 
+  while(cards[0]) {
+    library.removeChild(cards[0]);
+  };
+}
+
+function createLibraryCards() {
+  
   // const card = document.createElement("div");
   for (let book of myLibrary) {
     const card = document.createElement("div");
@@ -115,33 +153,6 @@ function createLibraryCards() {
 }
 
 createLibraryCards();
-
-// ------Modal------ 
-const openModal = document.getElementById("addBookBtn")
-const modal = document.getElementById("BookModal")
-const overlay = document.getElementById("overlay")
-
-openModal.addEventListener("click", () => addBookModal())
-overlay.addEventListener("click", () => {modal.classList.remove("active")
-                                        overlay.classList.remove("active")
-                                        })
-
-function addBookModal() {
-  addBookForm.reset()
-  modal.classList.add('active')
-  overlay.classList.add('active')
-}
-
-// const status = document.getElementsByName("status")
-// const title = document.getElementById("title")
-
-function radioStatus(t) {
-  let status = document.getElementsByName(`${t}`);
-  let checkedRadio = Array.from(status).find(
-    (radio) => radio.checked
-  );
-  return checkedRadio.value
-};
 
 // -------------Create book--------------
 createButton = document.getElementById("createBook");
