@@ -1,11 +1,16 @@
 let myLibrary = [];
 
+
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.status = status;
 }
+
+const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "read")
+const book2 = new Book("Alexander Lowen", "Radość", 327, "reading")
+const book3 = new Book("Iron John", "Robert Bly", 264, "unread")
 
 function createBook() {
   const title = document.getElementById("title").value;
@@ -21,6 +26,10 @@ function createBook() {
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
+
+addBookToLibrary(book1);
+addBookToLibrary(book2);
+addBookToLibrary(book3);
 
 function radioStatus() {
   let status = document.getElementsByName("status");
@@ -48,14 +57,6 @@ overlay.addEventListener("click", () => {modal.classList.remove("active")
 
 // const status = document.getElementsByName("status")
 // const title = document.getElementById("title")
-
-const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "read")
-const book2 = new Book("Alexander Lowen", "Radość", 327, "reading")
-const book3 = new Book("Iron John", "Robert Bly", 264, "unread")
-
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
 
 function removeLibraryCards() {
   const library = document.getElementById("library");
@@ -106,7 +107,7 @@ function createLibraryCards() {
     radioRead.type = 'radio';
     radioRead.id = 'read';
     radioRead.value = 'read';
-    radioRead.checked = true;
+    radioRead.checked = book.status == 'read'? true : false;
     radioRead.name = `${book.title}`;
     radioContainerRead.appendChild(radioRead);
 
@@ -124,6 +125,7 @@ function createLibraryCards() {
     radioUnRead.type = 'radio';
     radioUnRead.id = 'unread';
     radioUnRead.value = 'unread';
+    radioUnRead.checked = book.status == 'unread'? true : false;
     radioUnRead.name = `${book.title}`;
     radioContainerUnRead.appendChild(radioUnRead);
     
@@ -141,6 +143,7 @@ function createLibraryCards() {
     radioReading.type = 'radio';
     radioReading.id = 'reading';
     radioReading.value = 'reading';
+    radioReading.checked = book.status == 'reading' ? true : false;
     radioReading.name = `${book.title}`;
     radioContainerReading.appendChild(radioReading);
 
@@ -151,11 +154,11 @@ function createLibraryCards() {
     document.getElementById("library").appendChild(card);
   }
 }
-
-createLibraryCards();
-
-// -------------Create book--------------
+// -------------Create book button--------------
 createButton = document.getElementById("createBook");
 createButton.addEventListener("click", function(event){
   event.preventDefault()})
 createButton.addEventListener("click", () => createBook())
+
+createLibraryCards();
+
