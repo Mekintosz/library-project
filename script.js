@@ -22,6 +22,12 @@ function createBook() {
   createBookCard();
 }
 
+function removeBook(book) {
+  let bookToRemove = myLibrary.findIndex((x) => x.title == book);
+  myLibrary.splice(bookToRemove, 1);
+  createBookCard();
+}
+
 function createBookCard() {
   removeLibraryCards();
   createLibraryCards();
@@ -149,9 +155,10 @@ function createLibraryCards() {
     card.appendChild(status);
     status.appendChild(statusText);
 
-    const editButton = document.createElement("button")
-    editButton.innerText = "Edit book"
-    card.appendChild(editButton);
+    const removeButton = document.createElement("button")
+    removeButton.innerText = "Remove book"
+    card.appendChild(removeButton);
+    removeButton.addEventListener("click", () => removeBook(book.title));
 
     document.getElementById("library").appendChild(card);
   }
@@ -161,8 +168,8 @@ function createLibraryCards() {
 // -------------Create book button--------------
 createButton = document.getElementById("createBook");
 createButton.addEventListener("click", function(event){
-  event.preventDefault()})
-createButton.addEventListener("click", () => createBook())
+  event.preventDefault()});
+createButton.addEventListener("click", () => createBook());
 
 // let radioStatus = document.getElementsByName("status")
 // radioStatus.addEventListener("click",() => )
