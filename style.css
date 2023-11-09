@@ -79,6 +79,21 @@ header button img {
   align-self: flex-end;
 }
 
+.change-status-button {
+  background-color: #59A1A5;
+}
+
+.remove-button {
+  background-color: #FF7893;
+}
+
+.change-status-button, .remove-button {
+  width: 60%;
+  border-radius: 100px;
+  margin: 0.3rem auto 0;
+  font-size: 1rem;
+}
+
 
 /* -----------------modal------------------ */
 .modal {

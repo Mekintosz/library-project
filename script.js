@@ -109,63 +109,7 @@ function createLibraryCards() {
     card.appendChild(pages);
     pages.appendChild(pagesText);
 
-    // const radioContainer = document.createElement('div');
-    // card.appendChild(radioContainer);
-    // radioContainer.setAttribute("class", "radio-container");
-
-    // const radioContainerRead = document.createElement('div');
-    // radioContainer.appendChild(radioContainerRead);
-    // radioContainerRead.setAttribute("class", "radio-div");
-
-    // const labelRead = document.createElement('label');
-    // labelRead.htmlFor = 'read';
-    // radioContainerRead.appendChild(labelRead);
-    // const textL1 = document.createTextNode("Read");
-    // labelRead.appendChild(textL1);
-
-    // const radioRead = document.createElement("input");
-    // radioRead.type = 'radio';
-    // radioRead.id = 'read';
-    // radioRead.value = 'read';
-    // radioRead.checked = book.status == 'read';
-    // radioRead.name = `${book.title}`;
-    // radioContainerRead.appendChild(radioRead);
-
-    // const radioContainerUnRead = document.createElement('div');
-    // radioContainer.appendChild(radioContainerUnRead);
-    // radioContainerUnRead.setAttribute("class", "radio-div");
-
-    // const labelUnRead = document.createElement('label');
-    // labelUnRead.htmlFor = 'unread';
-    // radioContainerUnRead.appendChild(labelUnRead);
-    // const textL2 = document.createTextNode("Unread");
-    // labelUnRead.appendChild(textL2);
-
-    // const radioUnRead = document.createElement("input");
-    // radioUnRead.type = 'radio';
-    // radioUnRead.id = 'unread';
-    // radioUnRead.value = 'unread';
-    // radioUnRead.checked = book.status == 'unread';
-    // radioUnRead.name = `${book.title}`;
-    // radioContainerUnRead.appendChild(radioUnRead);
-
-    // const radioContainerReading = document.createElement('div');
-    // radioContainer.appendChild(radioContainerReading);
-    // radioContainerReading.setAttribute("class", "radio-div");
-
-    // const labelReading = document.createElement('label')
-    // labelReading.htmlFor = 'reading';
-    // radioContainerReading.appendChild(labelReading);
-    // const textL3 = document.createTextNode("Reading");
-    // labelReading.appendChild(textL3);
-
-    // const radioReading = document.createElement("input");
-    // radioReading.type = 'radio';
-    // radioReading.id = 'reading';
-    // radioReading.value = 'reading';
-    // radioReading.checked = book.status == 'reading';
-    // radioReading.name = `${book.title}`;
-    // radioContainerReading.appendChild(radioReading);
+    
     const status = document.createElement("p");
     const statusText = document.createTextNode(`Status:   ${book.status}`);
     card.appendChild(status);
@@ -173,11 +117,13 @@ function createLibraryCards() {
 
     const changeStatusButton = document.createElement("button");
     changeStatusButton.innerText = "Change status";
+    changeStatusButton.setAttribute("class", "change-status-button")
     card.appendChild(changeStatusButton);
     changeStatusButton.addEventListener("click", () => changeStatus(book.title, book.status));
 
     const removeButton = document.createElement("button");
     removeButton.innerText = "Remove book";
+    removeButton.setAttribute("class", "remove-button")
     card.appendChild(removeButton);
     removeButton.addEventListener("click", () => removeBook(book.title));
 
