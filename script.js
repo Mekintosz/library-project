@@ -7,9 +7,9 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
-const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "read");
-const book2 = new Book("Alexander Lowen", "Radość", 327, "reading");
-const book3 = new Book("Iron John", "Robert Bly", 264, "unread");
+const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "Read it");
+const book2 = new Book("Alexander Lowen", "Radość", 327, "Just reading");
+const book3 = new Book("Iron John", "Robert Bly", 264, "Not read");
 
 function createBook() {
   const title = document.getElementById("title").value;
@@ -18,16 +18,16 @@ function createBook() {
   const status = radioStatus(title);
   let newBook = new Book(title, author, pages, status);
   myLibrary.push(newBook);
-  createBookCard();
+  updateBookCards();
 }
 
 function removeBook(book) {
   let bookToRemove = myLibrary.findIndex((x) => x.title == book);
   myLibrary.splice(bookToRemove, 1);
-  createBookCard();
+  updateBookCards();
 }
 
-function createBookCard() {
+function updateBookCards() {
   removeLibraryCards();
   createLibraryCards();
 }
@@ -54,17 +54,17 @@ function addBookModal() {
 
 function changeStatus(book, statusB) {
   let bookToChange = myLibrary.findIndex((x) => x.title == book);
-  if(statusB == "read") {
-    myLibrary[bookToChange].status = "unread";
-    createBookCard();
+  if(statusB == "Read it") {
+    myLibrary[bookToChange].status = "Not read";
+    updateBookCards();
     return;
-  } else if (statusB == "unread") {
-    myLibrary[bookToChange].status = "reading";
-    createBookCard();
+  } else if (statusB == "Not read") {
+    myLibrary[bookToChange].status = "Just reading";
+    updateBookCards();
     return
   } else {
-    myLibrary[bookToChange].status = "read";
-    createBookCard();
+    myLibrary[bookToChange].status = "Read it";
+    updateBookCards();
   }
 
 }
@@ -137,8 +137,5 @@ createButton.addEventListener("click", function (event) {
   event.preventDefault();
 });
 createButton.addEventListener("click", () => createBook());
-
-// let radioStatus = document.getElementsByName("status")
-// radioStatus.addEventListener("click",() => )
 
 createLibraryCards();
