@@ -9,15 +9,12 @@ function Book(title, author, pages, status) {
   this.changeStatus = function() {
     if(this.status == "Read it") {
       this.status = "Not read";
-      updateBookCards();
       return;
     } else if (this.status == "Not read") {
       this.status = "Just reading";
-      updateBookCards();
       return
     } else {
       this.status = "Read it";
-      updateBookCards();
     }
   }
 }
@@ -117,7 +114,9 @@ function createLibraryCards() {
     changeStatusButton.innerText = "Change status";
     changeStatusButton.setAttribute("class", "change-status-button")
     card.appendChild(changeStatusButton);
-    changeStatusButton.addEventListener("click", () => book.changeStatus());
+    changeStatusButton.addEventListener("click", () => {book.changeStatus();
+    updateBookCards();
+    });
 
     const removeButton = document.createElement("button");
     removeButton.innerText = "Remove book";
