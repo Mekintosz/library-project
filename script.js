@@ -5,6 +5,21 @@ function Book(title, author, pages, status) {
   this.author = author;
   this.pages = pages;
   this.status = status;
+
+  this.changeStatus = function() {
+    if(this.status == "Read it") {
+      this.status = "Not read";
+      updateBookCards();
+      return;
+    } else if (this.status == "Not read") {
+      this.status = "Just reading";
+      updateBookCards();
+      return
+    } else {
+      this.status = "Read it";
+      updateBookCards();
+    }
+  }
 }
 
 const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "Read it");
@@ -50,23 +65,6 @@ function addBookModal() {
   addBookForm.reset();
   modal.classList.add("active");
   overlay.classList.add("active");
-}
-
-function changeStatus(book, statusB) {
-  let bookToChange = myLibrary.findIndex((x) => x.title == book);
-  if(statusB == "Read it") {
-    myLibrary[bookToChange].status = "Not read";
-    updateBookCards();
-    return;
-  } else if (statusB == "Not read") {
-    myLibrary[bookToChange].status = "Just reading";
-    updateBookCards();
-    return
-  } else {
-    myLibrary[bookToChange].status = "Read it";
-    updateBookCards();
-  }
-
 }
 
 // ------Modal------
@@ -119,7 +117,7 @@ function createLibraryCards() {
     changeStatusButton.innerText = "Change status";
     changeStatusButton.setAttribute("class", "change-status-button")
     card.appendChild(changeStatusButton);
-    changeStatusButton.addEventListener("click", () => changeStatus(book.title, book.status));
+    changeStatusButton.addEventListener("click", () => book.changeStatus());
 
     const removeButton = document.createElement("button");
     removeButton.innerText = "Remove book";
