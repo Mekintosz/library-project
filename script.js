@@ -104,16 +104,19 @@ function createLibraryCards() {
     card.appendChild(pages);
     pages.appendChild(pagesText);
 
-    
+    const statusContainer = document.createElement("div");
+    statusContainer.setAttribute("class", "status-container");
+    card.appendChild(statusContainer);
+
     const status = document.createElement("p");
     const statusText = document.createTextNode(`Status:   ${book.status}`);
-    card.appendChild(status);
+    statusContainer.appendChild(status);
     status.appendChild(statusText);
 
     const changeStatusButton = document.createElement("button");
     changeStatusButton.innerText = "Change status";
     changeStatusButton.setAttribute("class", "change-status-button")
-    card.appendChild(changeStatusButton);
+    statusContainer.appendChild(changeStatusButton);
     changeStatusButton.addEventListener("click", () => {book.changeStatus();
     updateBookCards();
     });
