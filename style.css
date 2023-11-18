@@ -176,9 +176,21 @@ header button img {
     border-radius: 6px;
   }
 
-  button[type="submit"] {
+  button[type="submit"], .close-modal-button {
     height: 40px;
     font-size: 22px;
+    width: 60%;
+    border-radius: 7px;
+    font-size: 22px;
+    border: none;
+    min-height: 1.4rem;
+    margin: 0 auto;
+    background-color: #59A1A5;
+  }
+
+  .close-modal-button {
+    background-color: #FF7893;
+
   }
 
   /* ---------------footer------------- */

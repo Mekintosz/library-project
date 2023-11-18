@@ -68,9 +68,15 @@ function addBookModal() {
 const openModal = document.getElementById("addBookBtn");
 const modal = document.getElementById("BookModal");
 const overlay = document.getElementById("overlay");
+const closeModalButton = document.getElementById("closeModalButton");
 
 openModal.addEventListener("click", () => addBookModal());
 overlay.addEventListener("click", () => {
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+closeModalButton.addEventListener("click", () => {
   modal.classList.remove("active");
   overlay.classList.remove("active");
 });
