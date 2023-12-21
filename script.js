@@ -1,12 +1,13 @@
-let myLibrary = [];
 
-function Book(title, author, pages, status) {
+class Book {
+  constructor (title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.status = status;
+  }
 
-  this.changeStatus = function() {
+  changeStatus() {
     if(this.status == "Read it") {
       this.status = "Not read";
       return;
@@ -19,9 +20,31 @@ function Book(title, author, pages, status) {
   }
 }
 
+
+class Library {
+  constructor() {
+  this.shelf = [];
+  }
+
+  addBook(newBook) {
+    this.shelf.push(newBook)
+  }
+
+  removeBook(book) {
+    let bookToRemove = this.shelf.findIndex((x) => x.title == book);
+    this.shelf.splice(bookToRemove, 1);
+  }
+}
+
+let myLibrary = new Library;
+
 const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "Read it");
 const book2 = new Book("Alexander Lowen", "Radość", 327, "Just reading");
 const book3 = new Book("Iron John", "Robert Bly", 264, "Not read");
+
+myLibrary.addBook(book1);
+myLibrary.addBook(book2);
+myLibrary.addBook(book3);
 
 function createBook() {
   const title = document.getElementById("title").value;
@@ -29,7 +52,7 @@ function createBook() {
   const pages = document.getElementById("pages").value;
   const status = radioStatus(title);
   let newBook = new Book(title, author, pages, status);
-  myLibrary.push(newBook);
+  myLibrary.addBook(newBook);
   updateBookCards();
 }
 
@@ -48,9 +71,7 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
+
 
 function radioStatus() {
   let status = document.getElementsByName("status");
@@ -91,7 +112,7 @@ function removeLibraryCards() {
 }
 
 function createLibraryCards() {
-  for (let book of myLibrary) {
+  for (let book of myLibrary.shelf) {
     const card = document.createElement("div");
     card.setAttribute("class", "card");
 
@@ -131,7 +152,7 @@ function createLibraryCards() {
     removeButton.innerText = "Remove book";
     removeButton.setAttribute("class", "remove-button")
     card.appendChild(removeButton);
-    removeButton.addEventListener("click", () => removeBook(book.title));
+    removeButton.addEventListener("click", () => {myLibrary.removeBook(book.title); updateBookCards();});
 
     document.getElementById("library").appendChild(card);
   }
