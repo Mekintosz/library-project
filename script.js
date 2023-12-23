@@ -1,4 +1,3 @@
-
 class Book {
   constructor (title, author, pages, status) {
   this.title = title;
@@ -20,7 +19,6 @@ class Book {
   }
 }
 
-
 class Library {
   constructor() {
   this.shelf = [];
@@ -36,7 +34,7 @@ class Library {
   }
 }
 
-let myLibrary = new Library;
+const myLibrary = new Library;
 
 const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "Read it");
 const book2 = new Book("Alexander Lowen", "Radość", 327, "Just reading");
@@ -56,22 +54,10 @@ function createBook() {
   updateBookCards();
 }
 
-function removeBook(book) {
-  let bookToRemove = myLibrary.findIndex((x) => x.title == book);
-  myLibrary.splice(bookToRemove, 1);
-  updateBookCards();
-}
-
 function updateBookCards() {
   removeLibraryCards();
-  createLibraryCards();
+  renderLibraryCards();
 }
-
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
-
-
 
 function radioStatus() {
   let status = document.getElementsByName("status");
@@ -79,7 +65,7 @@ function radioStatus() {
   return checkedRadio.value;
 }
 
-function addBookModal() {
+function openAddBookModal() {
   addBookForm.reset();
   modal.classList.add("active");
   overlay.classList.add("active");
@@ -91,7 +77,7 @@ const modal = document.getElementById("BookModal");
 const overlay = document.getElementById("overlay");
 const closeModalButton = document.getElementById("closeModalButton");
 
-openModal.addEventListener("click", () => addBookModal());
+openModal.addEventListener("click", () => openAddBookModal());
 overlay.addEventListener("click", () => {
   modal.classList.remove("active");
   overlay.classList.remove("active");
@@ -111,7 +97,7 @@ function removeLibraryCards() {
   }
 }
 
-function createLibraryCards() {
+function renderLibraryCards() {
   for (let book of myLibrary.shelf) {
     const card = document.createElement("div");
     card.setAttribute("class", "card");
@@ -156,13 +142,14 @@ function createLibraryCards() {
 
     document.getElementById("library").appendChild(card);
   }
-}
+};
 
-// -------------Create book button--------------
-createButton = document.getElementById("createBook");
-createButton.addEventListener("click", function (event) {
-  event.preventDefault();
-});
-createButton.addEventListener("click", () => createBook());
+(function renderAddBookBtn() {
+  createButton = document.getElementById("createBook");
+  createButton.addEventListener("click", function (event) {
+    event.preventDefault()
+  });
+  createButton.addEventListener("click", () => createBook());
+})();
 
-createLibraryCards();
+renderLibraryCards();
