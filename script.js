@@ -1,18 +1,18 @@
 class Book {
-  constructor (title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
+  constructor(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
   }
 
   changeStatus() {
-    if(this.status == "Read it") {
+    if (this.status == "Read it") {
       this.status = "Not read";
       return;
     } else if (this.status == "Not read") {
       this.status = "Just reading";
-      return
+      return;
     } else {
       this.status = "Read it";
     }
@@ -21,11 +21,11 @@ class Book {
 
 class Library {
   constructor() {
-  this.shelf = [];
+    this.shelf = [];
   }
 
   addBook(newBook) {
-    this.shelf.push(newBook)
+    this.shelf.push(newBook);
   }
 
   removeBook(book) {
@@ -34,7 +34,7 @@ class Library {
   }
 }
 
-const myLibrary = new Library;
+const myLibrary = new Library();
 
 const book1 = new Book("Beksinski Fotografia", "Wieslaw Banach", 64, "Read it");
 const book2 = new Book("Alexander Lowen", "Radość", 327, "Just reading");
@@ -48,7 +48,7 @@ function createBook() {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
-  const status = radioStatus(title);
+  const status = getBookStatus();
   let newBook = new Book(title, author, pages, status);
   myLibrary.addBook(newBook);
   updateBookCards();
@@ -59,7 +59,7 @@ function updateBookCards() {
   renderLibraryCards();
 }
 
-function radioStatus() {
+function getBookStatus() {
   let status = document.getElementsByName("status");
   let checkedRadio = Array.from(status).find((radio) => radio.checked);
   return checkedRadio.value;
@@ -77,16 +77,19 @@ const modal = document.getElementById("BookModal");
 const overlay = document.getElementById("overlay");
 const closeModalButton = document.getElementById("closeModalButton");
 
-openModal.addEventListener("click", () => openAddBookModal());
+openModal.addEventListener("click", openAddBookModal);
 overlay.addEventListener("click", () => {
   modal.classList.remove("active");
   overlay.classList.remove("active");
 });
 
-closeModalButton.addEventListener("click", () => {
+closeModalButton.addEventListener("click", closeModalBtnClick);
+
+function closeModalBtnClick(event) {
+  event.preventDefault();
   modal.classList.remove("active");
   overlay.classList.remove("active");
-});
+}
 
 function removeLibraryCards() {
   const library = document.getElementById("library");
@@ -103,17 +106,17 @@ function renderLibraryCards() {
     card.setAttribute("class", "card");
 
     const title = document.createElement("p");
-    const titleText = document.createTextNode(`Title:   ${book.title}`);
+    const titleText = document.createTextNode(`" ${book.title} "`);
     card.appendChild(title);
     title.appendChild(titleText);
 
     const author = document.createElement("p");
-    const authorText = document.createTextNode(`Author:   ${book.author}`);
+    const authorText = document.createTextNode(`by ${book.author}`);
     card.appendChild(author);
     author.appendChild(authorText);
 
     const pages = document.createElement("p");
-    const pagesText = document.createTextNode(`Pages:   ${book.pages}`);
+    const pagesText = document.createTextNode(`${book.pages} pages`);
     card.appendChild(pages);
     pages.appendChild(pagesText);
 
@@ -122,34 +125,40 @@ function renderLibraryCards() {
     card.appendChild(statusContainer);
 
     const status = document.createElement("p");
-    const statusText = document.createTextNode(`Status:   ${book.status}`);
+    const statusText = document.createTextNode(`${book.status}`);
     statusContainer.appendChild(status);
     status.appendChild(statusText);
 
     const changeStatusButton = document.createElement("button");
     changeStatusButton.innerText = "Change status";
-    changeStatusButton.setAttribute("class", "change-status-button")
+    changeStatusButton.setAttribute("class", "change-status-button");
     statusContainer.appendChild(changeStatusButton);
-    changeStatusButton.addEventListener("click", () => {book.changeStatus();
-    updateBookCards();
+    changeStatusButton.addEventListener("click", () => {
+      book.changeStatus();
+      updateBookCards();
     });
 
     const removeButton = document.createElement("button");
     removeButton.innerText = "Remove book";
-    removeButton.setAttribute("class", "remove-button")
+    removeButton.setAttribute("class", "remove-button");
     card.appendChild(removeButton);
-    removeButton.addEventListener("click", () => {myLibrary.removeBook(book.title); updateBookCards();});
+    removeButton.addEventListener("click", () => {
+      myLibrary.removeBook(book.title);
+      updateBookCards();
+    });
 
     document.getElementById("library").appendChild(card);
   }
-};
+}
 
 (function renderAddBookBtn() {
   createButton = document.getElementById("createBook");
-  createButton.addEventListener("click", function (event) {
-    event.preventDefault()
-  });
-  createButton.addEventListener("click", () => createBook());
+  createButton.addEventListener("click", createBtnClick);
+
+  function createBtnClick(event) {
+    event.preventDefault();
+    createBook();
+  }
 })();
 
 renderLibraryCards();
