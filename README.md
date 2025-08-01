@@ -2,7 +2,9 @@
 
 A library catalogue - Vanilla JS / CSS 
 
-Refactored status rendering, the code became difficult to refactor and maintain because it has poor structure. Need to restructure the whole code or abort the project as it is?
+Refactored status rendering, the code became difficult to refactor and maintain because it has a poor structure. 
+
+To do: add local storage
 
 Credits:
 "https://www.flaticon.com/free-icons/library"
