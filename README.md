@@ -1,10 +1,8 @@
 # Book shelf...
 
-A library catalogue - Vanilla JS / CSS 
+A library catalogue - Vanilla JS / CSS
 
-Refactored status rendering, the code became difficult to refactor and maintain because it has a poor structure. 
-
-To do: add local storage
+The app now relies on a structured `Library` class, event delegation and locally persisted data via `localStorage`. Status updates, removals and additions all re-render efficiently.
 
 Credits:
 "https://www.flaticon.com/free-icons/library"
