@@ -1,10 +1,20 @@
-# Book shelf...
+# Bookshelf
 
-A library catalogue - Vanilla JS / CSS
+Bookshelf is a small vanilla web app for cataloguing personal reading lists. Users can add titles, track authors, log page counts, and cycle a book through reading states. Everything persists locally, so the shelf remains intact between visits.
 
-The app now relies on a structured `Library` class, event delegation and locally persisted data via `localStorage`. Status updates, removals and additions all re-render efficiently.
+### Tech Stack
 
-Credits:
-"https://www.flaticon.com/free-icons/library"
+- HTML5 for structure and accessibility semantics
+- CSS Grid/Flexbox for responsive card and modal layouts
+- Vanilla JavaScript modules with DOM APIs, `FormData`, and `localStorage`
 
-<img width="1920" height="1080" alt="screencapture-127-0-0-1-5501-library-project-index-html-2025-07-30-16_50_49" src="https://github.com/user-attachments/assets/478f1fb1-cbd5-4e70-a0c9-0571efe9f421" />
+### Skills Practiced
+
+- Designing reusable classes (`Book`, `Library`) with clear data modeling
+- Implementing event delegation for dynamic UI updates
+- Managing state persistence with `localStorage`
+- Validating and normalising user input before rendering
+
+### Credits
+
+Icons from [Flaticon](https://www.flaticon.com/free-icons/library)
