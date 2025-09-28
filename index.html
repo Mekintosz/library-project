@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>Bookshelf...</title><link rel=stylesheet href=library-project.1a2e5448.css><script src=library-project.8a8967f4.js defer></script><link rel=icon type=image/x-icon href=books.628fd322.png><body>
+    <header class=header>
+      <img src=books.628fd322.png alt="stack of books">
+      <div class=title>
+        <h1>Bookshelf...</h1>
+        <p>The place to store all your books</p>
+      </div>
+
+      <button type=button class=button id=addBookBtn>
+        + add book<img src=book.84a0a0fb.png alt=add>
+      </button>
+    </header>
+    <div id=library></div>
+    <footer class=footer>
+      <p>Mekintosz @ 2023</p>
+    </footer>
+    <div class=modal id=BookModal>
+      <img src=book2.ebf89c6f.png alt="book illustration">
+      <form class=add-book-form id=addBookForm>
+        <div class=book-form-unit>
+          <label for=title>Book title</label>
+          <input id=title name=title placeholder="Type book title..." required>
+        </div>
+        <div class=book-form-unit>
+          <label for=author>Book author</label>
+          <input id=author name=author placeholder="The author's name..." required>
+        </div>
+        <div class=book-form-unit>
+          <label for=pages>Number of pages</label>
+          <input type=number id=pages name=pages placeholder="How many pages in the book..." min=1 step=1 required>
+        </div>
+        <div class=radio-container>
+          <div class=radio-div>
+            <label for=read>Read it</label>
+            <input type=radio id=read name=status value="Read it">
+          </div>
+          <div class=radio-div>
+            <label for=unread>Not read yet</label>
+            <input type=radio id=unread name=status value="Not read">
+          </div>
+          <div class=radio-div>
+            <label for=reading>Just reading</label>
+            <input type=radio id=reading name=status value="Just reading" checked>
+          </div>
+        </div>
+        <button id=createBook class=button>
+          Add on the shelf
+        </button>
+        <button type=button id=closeModalButton class=close-modal-button>
+          Abort mission
+        </button>
+      </form>
+    </div>
+    <div class=overlay id=overlay></div>
+  
+
