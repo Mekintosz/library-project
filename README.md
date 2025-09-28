@@ -1,4 +1,4 @@
-# Bookshelf
+# Bookshelf https://mekintosz.github.io/library-project/
 
 Bookshelf is a small vanilla web app for cataloguing personal reading lists. Users can add titles, track authors, log page counts, and cycle a book through reading states. Everything persists locally, so the shelf remains intact between visits.
 
